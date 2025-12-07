@@ -1,30 +1,29 @@
 import { useState } from 'react';
-import ctdLogo from './assets/icons/mono-blue-logo.svg';
 import './App.css';
 import InventoryData from './assets/inventory.json';
+import Header from './Header';
+import InventoryList from './InventoryList';
+import ProductCard from './ProductCard';
 
 function App() {
   const [inventory, setInventory] = useState(InventoryData.inventory);
+
+  function PromoteItem() {
+    return (
+      <ProductCard
+        baseName="Limited Edition Tee!"
+        baseDescription="Special limited edition neon green shirt with a metallic Code the
+        Dream Logo shinier than the latest front-end framework! Signed by the legendary Frank!"
+      />
+    );
+  }
+
   return (
     <main>
-      <div className="coming-soon">
-        <h1>CTD Swag</h1>
-        <div style={{ height: 100, width: 100 }}>
-          <img src={ctdLogo} alt="Code the Dream Logo" />
-        </div>
-      </div>
-      <ul>
-        {inventory.map((item) => {
-          return (
-            <li key={item.id}>
-              <div className="itemCard">
-                <h2>{item.baseName}</h2>
-                <p>{item.baseDescription}</p>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      {/* <h1>Hello?</h1> */}
+      <Header></Header>
+      {/* <InventoryList></InventoryList> */}
+      <InventoryList inventory={inventory}>{PromoteItem()}</InventoryList>
     </main>
   );
 }
